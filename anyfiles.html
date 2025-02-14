@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fayl Yuklash</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff9800;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e68900;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fayl yuklash tizimi</h1>
+        <p>Ushbu sayt orqali maxsus kod orqali fayllarni yuklab olishingiz mumkin.</p>
+        <p>Faylni yuklab olish uchun kodni kiriting:</p>
+        <input type="text" id="codeInput" placeholder="Kod kiriting" oninput="previewFile()">
+        <p id="filePreview"></p>
+        <button onclick="downloadFile()">Yuklab olish</button>
+        <button onclick="window.location.href='video.html';">Watch videos</button>
+        <p id="message"></p>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Anyfiles. HALLAYM LLC. Barcha huquqlar himoyalangan.</p>
+        <p>Email: <a href="mailto:hallaym0@gmail.com">hallaym0@gmail.com</a> | Email: <a href="tel:+998914703008">+998-(91)-470-3008</a> | <a href="https://t.me/hallaym" target="_blank">Telegram</a> | <a href="https://instagram.com/hallaymstore" target="_blank">Instagram</a></p>
+    </div>
+
+    <script>
+        const validCodes = {
+            "AAA111": {name: "GiBo meeting app", url: "https://dl.dropboxusercontent.com/scl/fi/t6w6nwtswofhdbuxcwfp6/app3418263-yb5vd4.apk?rlkey=33d220g3sel74c32vjq38aiy7&st=hpour53n&dl=0"},
+            "AAA222": {name: "TfS - Tests for Students app", url: "https://dl.dropboxusercontent.com/scl/fi/v835omyhjussy29331j2f/app3444095-d5qif6.apk?rlkey=xwrz3drqbp2z6bi0gf8rd79k6&st=ayv3tw1x&dl=0"},
+            "AAA333": {name: "HTML Space", url: "https://dl.dropboxusercontent.com/scl/fi/8f16t9yspl6l34mz7hhxv/app3485256-w2xcak.apk?rlkey=riuj9o1x3dijklwaq92wsxcmo&st=fnls3619&dl=0"},
+        };
+
+        function previewFile() {
+            let code = document.getElementById("codeInput").value.trim();
+            let filePreview = document.getElementById("filePreview");
+            if (validCodes[code]) {
+                filePreview.textContent = "Siz yuklab olishingiz mumkin: " + validCodes[code].name;
+                filePreview.style.color = "#0f0";
+            } else {
+                filePreview.textContent = "Noto'g'ri kod yoki mavjud emas!";
+                filePreview.style.color = "red";
+            }
+        }
+
+        function downloadFile() {
+            let code = document.getElementById("codeInput").value.trim();
+            let message = document.getElementById("message");
+            if (validCodes[code]) {
+                window.location.href = validCodes[code].url;
+            } else {
+                message.textContent = "Noto'g'ri kod!";
+                message.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

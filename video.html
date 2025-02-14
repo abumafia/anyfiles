@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Ko'rish Sayti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .video-container {
+            margin-top: 20px;
+        }
+        iframe {
+            width: 80%;
+            height: 400px;
+            border-radius: 10px;
+            border: none;
+        }
+        #videoTitle {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Video Ko'rish Sayti</h1>
+        <div class="input-container">
+            <input type="text" id="videoCode" placeholder="Kod kiriting (masalan: AAA111)" oninput="updateTitle()">
+            <button onclick="showVideo()">Ko'rsatish</button>
+            <a href="anyfiles.html" class="button">Ortga qaytish</a>
+        </div>
+        <div id="videoTitle"></div>
+        <div class="video-container" id="videoPlayer"></div>
+    </div>
+        <div class="footer">
+        <p>© 2025 Anyfiles. HALLAYM LLC. Barcha huquqlar himoyalangan.</p>
+        <p>Email: <a href="mailto:hallaym0@gmail.com">hallaym0@gmail.com</a> | Email: <a href="tel:+998914703008">+998-(91)-470-3008</a> | <a href="https://t.me/hallaym" target="_blank">Telegram</a> | <a href="https://instagram.com/hallaymstore" target="_blank">Instagram</a></p>
+    </div>
+
+    <script>
+        const videoDatabase = {
+            "AAA111": {url: "https://www.dropbox.com/scl/fi/7j7d4kbtbeskha4gn47ly/hi-everyone-yesterday-I-bought-instagram-account-from-hallaym-mywindo.mp4?rlkey=snjh1khsftoi5yp3mgm3sr3sy&st=y9zxrlnv&raw=1", title: "Music"},
+            "BBB222": {url: "https://www.dropbox.com/scl/fi/8m8d6b8qil95v40nzkdqr/power-of-ai.-trend-video..mp4?rlkey=js75mbspjalvcapknyvfpufao&st=9h4q9f7o&raw=1", title: "Power of AI videos"},
+            "CCC333": {url: "https://www.youtube.com/embed/3JZ_D3ELwOQ", title: "Uchinchi Video"}
+        };
+
+        function updateTitle() {
+            let code = document.getElementById('videoCode').value;
+            let video = videoDatabase[code];
+            document.getElementById('videoTitle').innerText = video ? video.title : "";
+        }
+
+        function showVideo() {
+            let code = document.getElementById('videoCode').value;
+            let video = videoDatabase[code];
+            if (video) {
+                document.getElementById('videoPlayer').innerHTML = `<iframe src="${video.url}" allowfullscreen></iframe>`;
+            } else {
+                alert("Kod topilmadi!");
+            }
+        }
+    </script>
+</body>
+</html>
